@@ -17,7 +17,7 @@ class InicioView(LoginRequiredMixin,TemplateView):
 
 class ModalidadeListView(ListView):
     model = Modalidade
-    template_name = 'inicio/modalidade_list.html'
+    template_name = 'modalidades/list.html'
     context_object_name = 'modalidades'
 
 

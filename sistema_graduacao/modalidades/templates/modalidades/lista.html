@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Gestão de Modalidades</h2>
+
+        <a href="{% url 'nova_modalidade' %}"
+           class="btn btn-success">
+            + Nova Modalidade
+        </a>
+    </div>
+
+    <div class="mb-3">
+
+        <button onclick="history.back()" class="btn btn-secondary">
+            ← Voltar
+        </button>
+
+        <a href="/" class="btn btn-primary">
+            🏠 Início
+        </a>
+
+    </div>
+
+    <div class="tabela-modalidades p-3">
+
+        <table class="table table-hover">
+
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome da Modalidade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for modalidade in modalidades %}
+                <tr>
+
+                    <td>{{ modalidade.id }}</td>
+
+                    <td>
+                        <strong>{{ modalidade.nome }}</strong>
+                    </td>
+
+                    <td>
+
+                        <a href="{% url 'editar_modalidade' modalidade.id %}"
+                        class="btn btn-sm btn-primary">
+                            Editar
+                        </a>
+
+                        <a href="{% url 'deletar_modalidade' modalidade.id %}"
+                        class="btn btn-sm btn-danger">
+                            Deletar
+                        </a>
+
+                    </td>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="3" class="text-center text-muted">
+                        Nenhuma modalidade cadastrada.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+{% endblock %}
