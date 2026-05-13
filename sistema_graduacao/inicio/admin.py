@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Modalidade, Plano
+from modalidades.models import Modalidade
+from .models import Plano
 
 @admin.register(Modalidade)
 class ModalidadeAdmin(admin.ModelAdmin):

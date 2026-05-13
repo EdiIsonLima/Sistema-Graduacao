@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView
-from .models import Modalidade, Plano
+from modalidades.models import Modalidade
+from .models import Plano
 from alunos.models import Aluno
 
 
