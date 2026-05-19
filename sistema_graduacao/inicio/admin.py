@@ -1,6 +1,6 @@
 from django.contrib import admin
 from modalidades.models import Modalidade
-from .models import Plano
+from planos.models import Plano
 
 @admin.register(Modalidade)
 class ModalidadeAdmin(admin.ModelAdmin):
@@ -8,4 +8,4 @@ class ModalidadeAdmin(admin.ModelAdmin):
 
 @admin.register(Plano)
 class PlanoAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'valor')
+    list_display = ('nome_plano', 'valor_plano')

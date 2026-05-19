@@ -1,3 +1,4 @@
 from django.contrib import admin
 
-# Register your models here.
+class PlanoAdmin(admin.ModelAdmin):
+    list_display = ['nome_plano', 'valor_plano']

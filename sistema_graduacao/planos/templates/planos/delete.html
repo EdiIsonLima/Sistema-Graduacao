@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 d-flex justify-content-center">
+
+    <div class="card p-4 shadow-sm"
+         style="max-width: 700px; width: 100%;">
+
+        <h3 class="mb-3">
+            Tem certeza que deseja deletar este plano?
+        </h3>
+
+        <p class="fw-bold fs-5 text-danger">
+            {{ object.nome_plano }}
+        </p>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <button class="btn btn-danger">
+                Confirmar
+            </button>
+
+            <a href="{% url 'lista_planos' %}"
+               class="btn btn-secondary">
+                Cancelar
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.db import models
 from modalidades.models import Modalidade
-from inicio.models import Plano
+from planos.models import Plano
 
 class Aluno(models.Model):
     faixa_choices = [

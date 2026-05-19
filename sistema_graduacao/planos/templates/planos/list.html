@@ -3,68 +3,52 @@
 {% block content %}
 <div class="container mt-4">
 
-    <!-- TOPO -->
     <div class="d-flex justify-content-between align-items-center mb-4">
 
         <h2 class="fw-bold">
-            Gestão de Modalidades
+            Gestão de Planos
         </h2>
 
-        <a href="{% url 'nova_modalidade' %}"
+        <a href="{% url 'novo_plano' %}"
            class="btn btn-success px-4">
-
-            + Nova Modalidade
-
+            + Novo Plano
         </a>
 
     </div>
 
-    <!-- BOTÕES -->
     <div class="mb-4">
 
         <button onclick="history.back()"
                 class="btn btn-secondary">
-
             ← Voltar
-
         </button>
 
         <a href="/"
            class="btn btn-primary">
-
             🏠 Início
-
         </a>
 
     </div>
 
-    <!-- CARD -->
-    <div class="bg-white shadow-sm rounded-4 p-4">
+    <div class="tabela-planos bg-white shadow-sm rounded-4 p-4">
 
-        <!-- TOTAL -->
         <div class="mb-3 text-secondary fw-semibold">
-
-            Total de modalidades: {{ modalidades|length }}
-
+            Total de planos: {{ planos|length }}
         </div>
 
-        <!-- TABELA -->
-        <table class="table align-middle">
+        <table class="table table-hover align-middle">
 
-            <!-- CABEÇALHO -->
             <thead class="table-dark">
 
                 <tr>
 
-                    <th class="ps-4" style="width: 80px;">
-                        ID
-                    </th>
+                    <th>ID</th>
 
-                    <th>
-                        Nome da Modalidade
-                    </th>
+                    <th>Nome do Plano</th>
 
-                    <th class="text-center pe-4" style="width: 170px;">
+                    <th>Valor do Plano</th>
+
+                    <th class="text-center">
                         Ações
                     </th>
 
@@ -72,41 +56,43 @@
 
             </thead>
 
-            <!-- CORPO -->
             <tbody>
 
-                {% for modalidade in modalidades %}
+                {% for plano in planos %}
 
                 <tr>
 
-                    <!-- ID -->
-                    <td class="ps-4">
-
-                        {{ modalidade.id }}
-
+                    <td>
+                        {{ plano.id }}
                     </td>
 
-                    <!-- NOME -->
                     <td>
 
                         <strong>
-                            {{ modalidade.nome }}
+                            {{ plano.nome_plano }}
                         </strong>
 
                     </td>
 
-                    <!-- AÇÕES -->
-                    <td class="text-center pe-4">
+                    <td>
 
-                        <a href="{% url 'editar_modalidade' modalidade.id %}"
+                        <span class="fw-semibold">
+                            R$ {{ plano.valor_plano }}
+                        </span>
+
+                    </td>
+
+                    <td class="text-center">
+
+                        <a href="{% url 'editar_plano' plano.id %}"
                            class="btn btn-sm btn-primary">
 
                             Editar
 
                         </a>
 
-                        <a href="{% url 'deletar_modalidade' modalidade.id %}"
-                           class="btn btn-sm btn-danger ms-1">
+                        <a href="{% url 'deletar_plano' plano.id %}"
+                           class="btn btn-sm btn-danger">
 
                             Deletar
 
@@ -120,10 +106,10 @@
 
                 <tr>
 
-                    <td colspan="3"
+                    <td colspan="4"
                         class="text-center text-muted py-4">
 
-                        Nenhuma modalidade cadastrada.
+                        Nenhum plano cadastrado.
 
                     </td>
 

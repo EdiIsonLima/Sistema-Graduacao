@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView
 from modalidades.models import Modalidade
-from .models import Plano
+from planos.models import Plano
 from alunos.models import Aluno
 
 
@@ -24,6 +24,6 @@ class ModalidadeListView(ListView):
 
 class PlanoListView(ListView):
     model = Plano
-    template_name = 'inicio/plano_list.html'
+    template_name = 'planos/list.html'
     context_object_name = 'planos'
 
