@@ -18,7 +18,7 @@ class ListaAlunosView(LoginRequiredMixin, ListView):
 class CreateAlunoView(LoginRequiredMixin, CreateView):
     model = Aluno
     fields = '__all__'
-    template_name = 'alunos/form.html'
+    template_name = 'alunos/alunoform.html'
     success_url = reverse_lazy('lista_alunos')
 
 

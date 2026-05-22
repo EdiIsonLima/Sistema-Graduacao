@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="tabela-alunos p-4">
+        <h4 class="fw-bold mb-3">
+            {% if object %}
+                Editar Aluno
+            {% else %}
+                Novo Aluno
+            {% endif %}
+        </h4>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <!-- Campos personalizados individualmente -->
+            <div class="mb-3">
+                <label for="id_date_inicio" class="form-label">Data de Início:</label>
+                {{ form.date_inicio }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_nome" class="form-label">Nome:</label>
+                {{ form.nome }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_idade" class="form-label">Idade:</label>
+                {{ form.idade }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_faixa_judo" class="form-label">Faixa Judô:</label>
+                {{ form.faixa_judo }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_faixa_jiujitsu" class="form-label">Faixa Jiu-Jitsu:</label>
+                {{ form.faixa_jiujitsu }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_graus" class="form-label">Graus:</label>
+                {{ form.graus }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_modalidade" class="form-label">Modalidade:</label>
+                {{ form.modalidade }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_plano" class="form-label">Plano:</label>
+                {{ form.plano }}
+            </div>
+
+            <button class="btn btn-success">Salvar</button>
+            <a href="{% url 'lista_alunos' %}" class="btn btn-secondary">Voltar</a>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -2,17 +2,94 @@
 
 {% block content %}
 
+<style>
+
+    .faixa-container {
+        margin-bottom: 10px;
+    }
+
+    .faixa-container:last-child {
+        margin-bottom: 0;
+    }
+
+    .badge-faixa {
+        margin-left: 10px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        display: inline-block;
+        min-width: 70px;
+        text-align: center;
+    }
+
+    /* CORES DAS FAIXAS */
+
+    .faixa-branca {
+        background-color: #f1f1f1;
+        color: black;
+        border: 1px solid #cfcfcf;
+    }
+
+    .faixa-cinza {
+        background-color: #95a5a6;
+        color: white;
+    }
+
+    .faixa-amarelo {
+        background-color: #f1c40f;
+        color: black;
+    }
+
+    .faixa-laranja {
+        background-color: #e67e22;
+        color: white;
+    }
+
+    .faixa-verde {
+        background-color: #27ae60;
+        color: white;
+    }
+
+    .faixa-azul {
+        background-color: #2980b9;
+        color: white;
+    }
+
+    .faixa-roxa {
+        background-color: #8e44ad;
+        color: white;
+    }
+
+    .faixa-marrom {
+        background-color: #8b5e3c;
+        color: white;
+    }
+
+    .faixa-preta {
+        background-color: #222;
+        color: white;
+    }
+
+</style>
+
 <div class="container">
     
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="fw-bold">Lista de Alunos</h4>
+
+        <h4 class="fw-bold">
+            Lista de Alunos
+        </h4>
+
         <a href="{% url 'novo_aluno' %}" class="btn btn-success">
             + Novo Aluno
         </a>
+
     </div>
 
     <!-- BOTÕES -->
     <div class="mb-3">
+
         <button onclick="history.back()" class="btn btn-secondary">
             ← Voltar
         </button>
@@ -20,40 +97,107 @@
         <a href="/" class="btn btn-primary">
             🏠 Início
         </a>
-    </div>
-<div class="tabela-alunos p-3">
 
-    <div class="mb-2 text-secondary" style="font-size:14px;">
-        <strong>Total de alunos: {{ total_alunos }}</strong>
     </div>
 
-    <table class="table table-hover align-middle mb-0">
+    <div class="tabela-alunos p-3">
+
+        <div class="mb-2 text-secondary" style="font-size:14px;">
+            <strong>Total de alunos: {{ total_alunos }}</strong>
+        </div>
+
+        <table class="table table-hover align-middle mb-0">
+
             <thead class="table-dark">
                 <tr>
-                    <th class="text-center">Matrícula</th>
-                    <th class="text-center">Data de Início</th>
-                    <th class="text-center">Nome</th>
-                    <th class="text-center">Idade</th>
-                    <th class="text-center">Faixa</th>
-                    <th class="text-center">Graus</th>
-                    <th class="text-center">Ações</th>
+
+                    <th class="text-center">
+                        Matrícula
+                    </th>
+
+                    <th class="text-center">
+                        Data de Início
+                    </th>
+
+                    <th class="text-center">
+                        Nome
+                    </th>
+
+                    <th class="text-center">
+                        Idade
+                    </th>
+
+                    <th class="text-center">
+                        Faixa
+                    </th>
+
+                    <th class="text-center">
+                        Graus
+                    </th>
+
+                    <th class="text-center">
+                        Ações
+                    </th>
+
                 </tr>
             </thead>
+
             <tbody>
+
                 {% for aluno in alunos %}
+
                 <tr>
-                    <td class="text-center">#{{ aluno.matricula }}</td>
-                    <td class="text-center">{{ aluno.date_inicio|date:"d \d\e F \d\e Y"}}</td>
-                    <td class="text-center">{{ aluno.nome }}</td>
-                    <td class="text-center">{{ aluno.idade }} anos</td>
-                    <td class="text-center">
-                        <span class="badge-faixa faixa-{{ aluno.faixa }}">
-                            {{ aluno.get_faixa_display }}
-                        </span>
-                    </td>
-                    <td class="text-center">{{ aluno.graus }} grau(s)</td>
 
                     <td class="text-center">
+                        #{{ aluno.matricula }}
+                    </td>
+
+                    <td class="text-center">
+                        {{ aluno.date_inicio|date:"d \d\e F \d\e Y" }}
+                    </td>
+
+                    <td class="text-center">
+                        {{ aluno.nome }}
+                    </td>
+
+                    <td class="text-center">
+                        {{ aluno.idade }} anos
+                    </td>
+
+                    <td class="text-center">
+
+                        {% if aluno.faixa_judo %}
+                        <div class="faixa-container">
+
+                            <strong>Judô:</strong>
+
+                            <span class="badge-faixa faixa-{{ aluno.faixa_judo }}">
+                                {{ aluno.get_faixa_judo_display }}
+                            </span>
+
+                        </div>
+                        {% endif %}
+
+                        {% if aluno.faixa_jiujitsu %}
+                        <div class="faixa-container">
+
+                            <strong>Jiu-Jitsu:</strong>
+
+                            <span class="badge-faixa faixa-{{ aluno.faixa_jiujitsu }}">
+                                {{ aluno.get_faixa_jiujitsu_display }}
+                            </span>
+
+                        </div>
+                        {% endif %}
+
+                    </td>
+
+                    <td class="text-center">
+                        {{ aluno.graus }} grau(s)
+                    </td>
+
+                    <td class="text-center">
+
                         <a href="{% url 'editar_aluno' aluno.pk %}" 
                            class="btn btn-sm btn-primary">
                             Editar
@@ -63,18 +207,29 @@
                            class="btn btn-sm btn-danger">
                             Deletar
                         </a>
+
                     </td>
+
                 </tr>
+
                 {% empty %}
+
                 <tr>
-                    <td colspan="6" class="text-center text-muted py-4">
+
+                    <td colspan="7" class="text-center text-muted py-4">
                         Nenhum aluno cadastrado ainda.
                     </td>
+
                 </tr>
+
                 {% endfor %}
+
             </tbody>
+
         </table>
+
     </div>
+
 </div>
 
 {% endblock %}
